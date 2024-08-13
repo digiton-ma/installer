@@ -77,12 +77,13 @@ class NewCommand extends Command
 
         $this->configurePrompts($input, $output);
 
-        $output->write(PHP_EOL.'  <fg=red> _                               _
-  | |                             | |
-  | |     __ _ _ __ __ ___   _____| |
-  | |    / _` | \'__/ _` \ \ / / _ \ |
-  | |___| (_| | | | (_| |\ V /  __/ |
-  |______\__,_|_|  \__,_| \_/ \___|_|</>'.PHP_EOL.PHP_EOL);
+        $output->write('<fg=blue>
+ ____    _          _  _
+|  _ \  (_)   __ _ (_)| |_    ___   _ __
+| | | | | |  / _` || || __|  / _ \ | \'_ \
+| |_| | | | | (_| || || |_  | (_) || | | |
+|____/  |_|  \__, ||_| \__|  \___/ |_| |_|
+             |___/ power on your digital </>'.PHP_EOL.PHP_EOL);
 
         if (! $input->getArgument('name')) {
             $input->setArgument('name', text(
