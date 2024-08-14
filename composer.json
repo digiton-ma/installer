@@ -30,12 +30,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Laravel\\Installer\\Console\\": "src/"
+            "Digitonma\\Installer\\Console\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Laravel\\Installer\\Console\\Tests\\": "tests/"
+            "Digitonma\\Installer\\Console\\Tests\\": "tests/"
         }
     },
     "config": {

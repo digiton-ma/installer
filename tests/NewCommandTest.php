@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravel\Installer\Console\Tests;
+namespace Digitonma\Installer\Console\Tests;
 
-use Laravel\Installer\Console\NewCommand;
+use Digitonma\Installer\Console\NewCommand;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
