@@ -1,9 +1,9 @@
 # Laravel Installer
 
-<a href="https://github.com/laravel/installer/actions"><img src="https://github.com/laravel/installer/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/installer"><img src="https://img.shields.io/packagist/dt/laravel/installer" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/installer"><img src="https://img.shields.io/packagist/v/laravel/installer" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/installer"><img src="https://img.shields.io/packagist/l/laravel/installer" alt="License"></a>
+<a href="https://github.com/digiton-ma/installer/actions"><img src="https://github.com/digiton-ma/installer/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/digiton-ma/installer"><img src="https://img.shields.io/packagist/dt/digiton-ma/installer" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/digiton-ma/installer"><img src="https://img.shields.io/packagist/v/digiton-ma/installer" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/digiton-ma/installer"><img src="https://img.shields.io/packagist/l/digiton-ma/installer" alt="License"></a>
 
 ## Official Documentation
 
@@ -19,7 +19,7 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 ## Security Vulnerabilities
 
-Please review [our security policy](https://github.com/laravel/installer/security/policy) on how to report security vulnerabilities.
+Please review [our security policy](https://github.com/digiton-ma/installer/security/policy) on how to report security vulnerabilities.
 
 ## License
 

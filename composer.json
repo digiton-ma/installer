@@ -1,12 +1,16 @@
 {
-    "name": "laravel/installer",
-    "description": "Laravel application installer.",
-    "keywords": ["laravel"],
+    "name": "digiton-ma/installer",
+    "description": "Digiton's own Laravel starter-kits installer.",
+    "keywords": ["laravel", "digiton-ma"],
     "license": "MIT",
     "authors": [
         {
             "name": "Taylor Otwell",
             "email": "taylor@laravel.com"
+        },
+        {
+            "name": "Abdelhamid Errahmouni",
+            "email": "abdelhamid.errahmouni@gmail.com"
         }
     ],
     "require": {
