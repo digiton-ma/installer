@@ -176,8 +176,9 @@ class NewCommand extends Command
 
                 $this->configureDefaultDatabaseConnection($directory, "mysql", $name);
 
+                $output->writeln( ' ' . PHP_EOL);
                 $migrate = confirm(
-                    label: 'Default database updated. Would you like to run the default database migrations?',
+                    label: 'Would you like to run the default database migrations?',
                     default: true
                 );
 
@@ -186,7 +187,28 @@ class NewCommand extends Command
                         $this->phpBinary().' artisan migrate',
                     ], $input, $output, workingPath: $directory);
                 }
+
+                $seed = confirm(
+                    label: 'Would you like to run the default seeders?',
+                    default: true
+                );
+
+                if ($seed) {
+                    $this->runCommands([
+                        $this->phpBinary().' artisan db:seed',
+                    ], $input, $output, workingPath: $directory);
+                }
             }
+
+            $commands = [
+                "cd $directory",
+                $phpBinary." artisan storage:link --force --ansi",
+                $phpBinary." artisan optimize:clear --ansi",
+                $phpBinary." artisan ide-helper:generate --ansi",
+                $phpBinary." artisan ide-helper:meta --ansi",
+            ];
+
+            $this->runCommands($commands, $input, $output);
 
             if ($input->getOption('git') || $input->getOption('github') !== false) {
                 $this->createRepository($directory, $input, $output);
@@ -211,16 +233,6 @@ class NewCommand extends Command
             $output->writeln('  New to Laravel? Check out our <href=https://bootcamp.laravel.com>bootcamp</> and <href=https://laravel.com/docs/installation#next-steps>documentation</>. <options=bold>Build something amazing!</>');
             $output->writeln('');
         }
-
-        $commands = [
-            "cd $directory",
-            $phpBinary." artisan storage:link --force --ansi",
-            $phpBinary." artisan optimize:clear --ansi",
-            $phpBinary." artisan ide-helper:generate --ansi",
-            $phpBinary." artisan ide-helper:meta --ansi",
-        ];
-
-        $this->runCommands($commands, $input, $output);
 
         $this->replaceInFile(
             'APP_INSTALLED=false',
