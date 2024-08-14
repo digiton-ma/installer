@@ -5,9 +5,24 @@
 <a href="https://packagist.org/packages/digiton-ma/installer"><img src="https://img.shields.io/packagist/v/digiton-ma/installer" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/digiton-ma/installer"><img src="https://img.shields.io/packagist/l/digiton-ma/installer" alt="License"></a>
 
-## Official Documentation
+## Documentation
 
-Documentation for installing Laravel can be found on the [Laravel website](https://laravel.com/docs#creating-a-laravel-project).
+### Installation
+
+You can install the package via composer:
+
+```bash
+composer global require digiton-ma/installer
+```
+
+### Usage
+
+You can create a new Laravel project by running:
+
+```bash
+digitoncli new project-name
+```
+
 
 ## Contributing
 
