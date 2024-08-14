@@ -50,6 +50,8 @@ class NewCommand extends Command
             ->addOption('type', null, InputOption::VALUE_OPTIONAL, 'The starter-kit that should be installed (static / platform)')
             ->addOption('migrate', null, InputOption::VALUE_NONE, 'Indicates whether the default migrations should be run automatically')
             ->addOption('seed', null, InputOption::VALUE_NONE, 'Indicates whether the default seeders should be run automatically')
+            ->addOption('db-user', null, InputOption::VALUE_REQUIRED, 'The database username')
+            ->addOption('db-password', null, InputOption::VALUE_REQUIRED, 'The database password')
 //            ->addOption('static', null, InputOption::VALUE_NONE, 'Installs the static starter-kit scaffolding')
 //            ->addOption('platform', null, InputOption::VALUE_NONE, 'Installs the platform scaffolding')
 //            ->addOption('api', null, InputOption::VALUE_NONE, 'Indicates whether Jetstream should be scaffolded with API support')
@@ -176,7 +178,7 @@ class NewCommand extends Command
                     $directory.'/.env'
                 );
 
-                $this->configureDefaultDatabaseConnection($directory, "mysql", $name);
+                $this->configureDefaultDatabaseConnection($directory, $input, "mysql", $name);
 
                 if (! ($migrate = $input->getOption('migrate'))) {
                     $output->writeln(' ' . PHP_EOL);
@@ -273,8 +275,12 @@ class NewCommand extends Command
      * @param  string  $name
      * @return void
      */
-    protected function configureDefaultDatabaseConnection(string $directory, string $database, string $name)
+    protected function configureDefaultDatabaseConnection(string $directory,InputInterface $input, string $database, string $name)
     {
+        $dbUser = $input->getOption('db-user') ?: 'root';
+        $dbPassword = $input->getOption('db-password') ?: '';
+
+        // change the default database name in the .env and .env.example files
         $this->pregReplaceInFile(
             '/DB_DATABASE=.*/',
             'DB_DATABASE='.str_replace('-', '_', strtolower($name)),
@@ -284,6 +290,32 @@ class NewCommand extends Command
         $this->pregReplaceInFile(
             '/DB_DATABASE=.*/',
             'DB_DATABASE='.str_replace('-', '_', strtolower($name)),
+            $directory.'/.env.example'
+        );
+
+        // change the default database user and password in the .env and .env.example files
+        $this->pregReplaceInFile(
+            '/DB_USERNAME=.*/',
+            'DB_USERNAME='.$dbUser,
+            $directory.'/.env'
+        );
+
+        $this->pregReplaceInFile(
+            '/DB_USERNAME=.*/',
+            'DB_USERNAME='.$dbUser,
+            $directory.'/.env.example'
+        );
+
+        // change the default database user and password in the .env and .env.example files
+        $this->pregReplaceInFile(
+            '/DB_PASSWORD=.*/',
+            'DB_PASSWORD='.$dbPassword,
+            $directory.'/.env'
+        );
+
+        $this->pregReplaceInFile(
+            '/DB_PASSWORD=.*/',
+            'DB_PASSWORD='.$dbPassword,
             $directory.'/.env.example'
         );
     }
