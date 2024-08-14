@@ -48,6 +48,8 @@ class NewCommand extends Command
             ->addOption('github', null, InputOption::VALUE_OPTIONAL, 'Create a new repository on GitHub', false)
             ->addOption('org', null, InputOption::VALUE_REQUIRED, 'The GitHub organization to create the new repository for')
             ->addOption('type', null, InputOption::VALUE_OPTIONAL, 'The starter-kit that should be installed (static / platform)')
+            ->addOption('migrate', null, InputOption::VALUE_NONE, 'Indicates whether the default migrations should be run automatically')
+            ->addOption('seed', null, InputOption::VALUE_NONE, 'Indicates whether the default seeders should be run automatically')
 //            ->addOption('static', null, InputOption::VALUE_NONE, 'Installs the static starter-kit scaffolding')
 //            ->addOption('platform', null, InputOption::VALUE_NONE, 'Installs the platform scaffolding')
 //            ->addOption('api', null, InputOption::VALUE_NONE, 'Indicates whether Jetstream should be scaffolded with API support')
@@ -176,26 +178,30 @@ class NewCommand extends Command
 
                 $this->configureDefaultDatabaseConnection($directory, "mysql", $name);
 
-                $output->writeln( ' ' . PHP_EOL);
-                $migrate = confirm(
-                    label: 'Would you like to run the default database migrations?',
-                    default: true
-                );
+                if (! ($migrate = $input->getOption('migrate'))) {
+                    $output->writeln(' ' . PHP_EOL);
+                    $migrate = confirm(
+                        label: 'Would you like to run the default database migrations?',
+                        default: true
+                    );
+                }
 
                 if ($migrate) {
                     $this->runCommands([
-                        $this->phpBinary().' artisan migrate',
+                        $this->phpBinary() . ' artisan migrate',
                     ], $input, $output, workingPath: $directory);
                 }
 
-                $seed = confirm(
-                    label: 'Would you like to run the default seeders?',
-                    default: true
-                );
+                if (! ($seed = $input->getOption('seed'))) {
+                    $seed = confirm(
+                        label: 'Would you like to run the default seeders?',
+                        default: true
+                    );
+                }
 
                 if ($seed) {
                     $this->runCommands([
-                        $this->phpBinary().' artisan db:seed',
+                        $this->phpBinary() . ' artisan db:seed',
                     ], $input, $output, workingPath: $directory);
                 }
             }
