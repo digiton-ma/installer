@@ -401,7 +401,7 @@ class NewCommand extends Command
             return;
         }
 
-        $name = $input->getOption('organization') ? $input->getOption('organization')."/$name" : $name;
+        $name = $input->getOption('org') ? $input->getOption('org')."/$name" : $name;
         $flags = $input->getOption('github') ?: '--private';
 
         $commands = [
