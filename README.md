@@ -23,6 +23,36 @@ You can create a new Laravel project by running:
 digitoncli new project-name
 ```
 
+Use flags to customize the installation:
+
+`--git`: Initialize a git repository
+```bash
+digitoncli new project-name --git
+```
+
+`--git --github`: Initialize a git repository and create a new repository on GitHub
+```bash
+digitoncli new project-name --git --github
+```
+
+`--git --github --org=digiton-ma`: Initialize a git repository and create a new repository on GitHub under the digiton-ma organization
+```bash
+digitoncli new project-name --git --github --org=digiton-ma
+```
+
+`--migrate --seed`: Run the migrations and seed the database
+```bash
+digitoncli new project-name --migrate --seed 
+```
+
+`--migrate --db-use=root --db-password=pass`: Run the migrations and seed the database using the specified database user and password 
+```bash
+digitoncli new project-name --migrate --db-use=root --db-password=pass
+```
+Most used command:
+```bash
+digitoncli new project-name --git --github --org=digiton-ma --migrate --seed
+```
 
 ## Contributing
 
